@@ -1,0 +1,85 @@
+2. Счетчик 
+#include <iostream>
+
+class Counter 
+{
+private:
+    int value
+}
+
+public:
+
+    Counter() : value(1) {}
+
+   
+    explicit Counter(int initialValue) : value(initialValue) {}
+
+   
+    void increment() 
+{
+    {
+        ++value;
+    }
+
+   
+    void decrement() 
+    {
+        --value;
+    }
+
+    
+    int getValue() const 
+    {
+        return value;
+    }
+}
+
+int main() 
+{
+    Counter counter;
+    char choice;
+    int startValue;
+
+    
+    std::cout << "Хотите задать начальное значение счётчика? (y/n): " << std::endl;
+    std::cin >> choice;
+
+    if (choice == 'y' || choice == 'Y') 
+    {
+        std::cout << "Введите начальное значение: " << std::endl;
+        std::cin >> startValue;
+        counter = Counter(startValue);
+    } else 
+    
+        counter = Counter();
+    }
+
+    char command;
+    std::cout << "\nДоступные команды:\n" << std::endl;
+    std::cout << "+ : увеличить счётчик на 1\n" << std::endl;
+    std::cout << "- : уменьшить счётчик на 1\n" << std::endl;
+    std::cout << "= : вывести текущее значение\n" << std::endl;
+    std::cout << "x : завершить работу программы\n\n" << std::endl;
+
+    while (true) {
+        std::cout << "> " << std::endl;
+        std::cin >> command;
+
+        switch (command) {
+            case '+':
+                counter.increment();
+                break;
+            case '-':
+                counter.decrement();
+                break;
+            case '=':
+                std::cout << "Текущее значение счётчика: " << counter.getValue() << "\n" << std::endl;
+                break;
+            case 'x':
+                std::cout << "Программа завершена.\n" << std::endl;
+                return 0;
+            default:
+                std::cout << "Неизвестная команда. Используйте +, -, = или x.\n" << std::endl;
+        }
+    }
+}
