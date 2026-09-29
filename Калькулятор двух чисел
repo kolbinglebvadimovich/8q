@@ -1,0 +1,133 @@
+1. Калькулятор двух чисел 
+#include <iostream>
+
+class Calculator 
+{
+private:
+    double num1;
+    double num2;
+}
+
+public:
+    Calculator() : num1(0.0), num2(0.0) {}
+
+    
+    double add() const 
+    {
+        return num1 + num2;
+    }
+
+    double multiply() const 
+    {
+        return num1 * num2;
+    }
+
+    double subtract_1_2() const 
+    {
+        return num1 - num2;
+    }
+
+    double subtract_2_1() const 
+    {
+        return num2 - num1;
+    }
+
+    double divide_1_2() const 
+    {
+        if (num2 == 0.0) 
+        {
+            return 0.0; 
+        }
+        return num1 / num2;
+    }
+
+    double divide_2_1() const 
+    {
+        if (num1 == 0.0) 
+        {
+            return 0.0;
+        }
+        return num2 / num1;
+    }
+
+    
+    bool set_num1(double value) 
+    {
+        if (value != 0.0) 
+        {
+            num1 = value;
+            return true;
+        }
+        return false;
+    }
+
+    bool set_num2(double value) 
+{
+    {   if (value != 0.0) 
+        {
+            num2 = value;
+            return true;
+        }
+        return false;
+    }
+}
+
+int main() 
+{
+    Calculator calc;
+    double input1, input2;
+    bool valid1, valid2;
+
+    while (true) {
+        std::cout << "\n--- Новый расчёт ---\n" << std::endl;
+        std::cout << "Введите первое число (не равное 0): " << std::endl;
+        std::cin >> input1;
+
+        
+        if (std::cin.fail() || !calc.set_num1(input1)) 
+        {
+            std::cout << "Некорректный ввод для первого числа! Оно должно быть числом и не равным 0.\n" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            continue;
+        }
+
+        std::cout << "Введите второе число (не равное 0): " << std::endl;
+        std::cin >> input2;
+
+        if (std::cin.fail() || !calc.set_num2(input2)) 
+        {
+            std::cout << "Некорректный ввод для второго числа! Оно должно быть числом и не равным 0.\n" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            continue;
+        }
+
+        std::cout << "\nРезультаты вычислений:\n" << std::endl;
+        std::cout << "Сложение (num1 + num2): " << calc.add() << "\n" << std::endl;
+        std::cout << "Умножение (num1 * num2): " << calc.multiply() << "\n" << std::endl;
+        std::cout << "Вычитание (num1 - num2): " << calc.subtract_1_2() << "\n" << std::endl;
+        std::cout << "Вычитание (num2 - num1): " << calc.subtract_2_1() << "\n" << std::endl;
+        
+       
+        std::cout << "Деление (num1 / num2): " << std::endl;
+        if (input2 != 0.0) 
+        {
+            std::cout << calc.divide_1_2() << "\n" << std::endl;
+        } else 
+        {
+            std::cout << "Ошибка: деление на ноль!\n" << std::endl;
+        }
+
+        std::cout << "Деление (num2 / num1): " << std::endl;
+        if (input1 != 0.0) 
+        {
+            std::cout << calc.divide_2_1() << "\n" << std::endl;
+        } else 
+        {
+            std::cout << "Ошибка: деление на ноль!\n" << std::endl;
+        }
+    }
+
+    return 0;
+}
